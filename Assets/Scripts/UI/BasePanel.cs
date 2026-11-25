@@ -19,8 +19,8 @@ public abstract class BasePanel : MonoBehaviour
         //一开始获取面板上挂载的组件
         canvasGroup = this.GetComponent<CanvasGroup>();
         //如果没有就通过代码为他添加一个
-        if (canvasGroup = null)
-            this.gameObject.AddComponent<CanvasGroup>();
+        if (canvasGroup == null)
+            canvasGroup = this.gameObject.AddComponent<CanvasGroup>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -65,7 +65,7 @@ public abstract class BasePanel : MonoBehaviour
                 canvasGroup.alpha = 1;
         }
         //淡出
-        if(isShow && canvasGroup.alpha != 1)
+        else if(!isShow)
         {
             canvasGroup.alpha -= alphaSpeed * Time.deltaTime;
             if (canvasGroup.alpha <= 0)
